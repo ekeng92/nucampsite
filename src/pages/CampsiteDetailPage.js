@@ -2,17 +2,17 @@ import { Container, Row, Col } from "reactstrap";
 import { selectCampsiteById } from "../features/campsites/campsitesSlice";
 import CampsiteDetail from "../features/campsites/CampsiteDetail";
 import { useParams } from "react-router-dom";
+import CommentsList from "../features/comments/CommentsList";
 
 const CampsiteDetailPage = () => {
-  let {campsiteId} = useParams();
+  let { campsiteId } = useParams();
 
   const selectedCampsite = selectCampsiteById(campsiteId);
   return (
     <Container>
       <Row>
-        <Col sm="7" md="5">
-          <CampsiteDetail campsite={selectedCampsite} />
-        </Col>
+        <CampsiteDetail campsite={selectedCampsite} />
+        <CommentsList campsiteId={campsiteId} />
       </Row>
     </Container>
   );
