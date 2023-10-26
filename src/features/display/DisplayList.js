@@ -4,6 +4,7 @@ import DisplayCard from "./DisplayCard";
 import { selectFeaturedCampsite } from "../campsites/campsitesSlice";
 import { selectFeaturedPromotion } from "../promotions/promotionsSlice";
 import { selectFeaturedPartner } from "../partners/partnersSlice";
+import DisplayCardAnimated from "./DisplayCardAnimated";
 
 const DisplayList = () => {
   const items = [
@@ -15,9 +16,9 @@ const DisplayList = () => {
   return (
     <Row>
       {items.map((item, idx) => {
-        return (
+        return item && (
           <Col className="m-1" md key={idx}>
-            <DisplayCard item={item} key={idx}></DisplayCard>
+            <DisplayCardAnimated item={item} key={idx}></DisplayCardAnimated>
           </Col>
         );
       })}
