@@ -16,10 +16,12 @@ const DisplayList = () => {
   return (
     <Row>
       {items.map((item, idx) => {
-        return item && (
-          <Col className="m-1" md key={idx}>
-            <DisplayCardAnimated item={item} key={idx}></DisplayCardAnimated>
-          </Col>
+        return (
+          item && (
+            <Col className="m-1" md key={idx}>
+              <DisplayCardAnimated item={item} key={idx}></DisplayCardAnimated>
+            </Col>
+          )
         );
       })}
     </Row>
