@@ -32,7 +32,7 @@ const ContactForm = () => {
               <Field
                 className="form-control"
                 name="firstName"
-                placeHolder="First Name"
+                placeholder="First Name"
               />
               <ErrorMessage name="firstName">
                 {(msg) => <p className="text-danger">{msg}</p>}
@@ -47,7 +47,7 @@ const ContactForm = () => {
               <Field
                 className="form-control"
                 name="lastName"
-                placeHolder="Last Name"
+                placeholder="Last Name"
               />
               <ErrorMessage name="lastName">
                 {(msg) => <p className="text-danger">{msg}</p>}
@@ -62,7 +62,7 @@ const ContactForm = () => {
               <Field
                 className="form-control"
                 name="phoneNum"
-                placeHolder="Phone"
+                placeholder="Phone"
               />
               <ErrorMessage name="phoneNum">
                 {(msg) => <p className="text-danger">{msg}</p>}
@@ -77,7 +77,7 @@ const ContactForm = () => {
               <Field
                 className="form-control"
                 name="email"
-                placeHolder="Email"
+                placeholder="Email"
               />
               <ErrorMessage name="email">
                 {(msg) => <p className="text-danger">{msg}</p>}

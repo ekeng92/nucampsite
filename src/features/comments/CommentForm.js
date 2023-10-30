@@ -14,7 +14,6 @@ import { validateCommentForm } from "../../utils/validateCommentForm";
 const CommentForm = ({ campsiteId }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const handleSubmit = (values) => {
-    console.log("submit");
     const comment = {
       campsiteId: parseInt(campsiteId),
       rating: values.rating,
