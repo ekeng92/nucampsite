@@ -9,7 +9,7 @@ const DisplayList = () => {
   const items = [
     useSelector(selectFeaturedCampsite),
     selectFeaturedPromotion(),
-    selectFeaturedPartner(),
+    useSelector(selectFeaturedPartner),
   ];
 
   return (
