@@ -1,10 +1,10 @@
-import { Container, Row, Col } from "reactstrap";
 import { useSelector } from "react-redux";
-import { selectCampsiteById } from "../features/campsites/campsitesSlice";
-import CampsiteDetail from "../features/campsites/CampsiteDetail";
 import { useParams } from "react-router-dom";
-import CommentsList from "../features/comments/CommentsList";
+import { Container, Row } from "reactstrap";
 import Subheader from "../components/Subheader";
+import CampsiteDetail from "../features/campsites/CampsiteDetail";
+import { selectCampsiteById } from "../features/campsites/campsitesSlice";
+import CommentsList from "../features/comments/CommentsList";
 
 const CampsiteDetailPage = () => {
   let { campsiteId } = useParams();

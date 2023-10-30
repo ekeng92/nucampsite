@@ -1,7 +1,5 @@
-import useState, { useEffect } from "react";
-import { Col, Row, Container, Card, CardBody, CardHeader } from "reactstrap";
+import { Card, CardBody, CardHeader, Col, Container, Row } from "reactstrap";
 import Subheader from "../components/Subheader";
-import { selectAllPartners } from "../features/partners/partnersSlice";
 import PartnersList from "../features/partners/PartnersList";
 
 const AboutPage = () => {
