@@ -8,7 +8,7 @@ import DisplayCardAnimated from "./DisplayCardAnimated";
 const DisplayList = () => {
   const items = [
     useSelector(selectFeaturedCampsite),
-    selectFeaturedPromotion(),
+    useSelector(selectFeaturedPromotion),
     useSelector(selectFeaturedPartner),
   ];
 
