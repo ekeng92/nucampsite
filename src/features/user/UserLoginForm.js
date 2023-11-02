@@ -10,7 +10,8 @@ import {
   ModalBody,
   ModalHeader,
 } from "reactstrap";
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
+import { validateUserLoginForm } from "../../utils/validateUserLoginForm";
 
 const UserLoginForm = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -59,6 +60,7 @@ const UserLoginForm = () => {
               password: "",
             }}
             onSubmit={handleLogin}
+            validate={validateUserLoginForm}
           >
             <Form>
               <FormGroup>
@@ -72,6 +74,9 @@ const UserLoginForm = () => {
                   placeholder="Username"
                   className="form-control"
                 ></Field>
+                <ErrorMessage name="username">
+                  {(msg) => <div className="text-danger">{msg}</div>}
+                </ErrorMessage>
               </FormGroup>
               <FormGroup>
                 <Label id="password" htmlFor="password">
@@ -84,6 +89,9 @@ const UserLoginForm = () => {
                   placeholder="password"
                   className="form-control"
                 ></Field>
+                <ErrorMessage name="password">
+                  {(msg) => <div className="text-danger">{msg}</div>}
+                </ErrorMessage>
               </FormGroup>
               <Button type="submit" color="primary">
                 Login
