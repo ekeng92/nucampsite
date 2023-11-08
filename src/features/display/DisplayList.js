@@ -14,26 +14,26 @@ const DisplayList = () => {
     useSelector(selectFeaturedPartner),
   ];
 
-  const isLoading = useSelector((state) => state.campsites.isLoading);
-  const errMsg = useSelector((state) => state.campsites.error);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-  if (errMsg) {
-    return <Error errMsg={errMsg} />;
-  }
-
   return (
     <Row>
       {items.map((item, idx) => {
-        return (
-          item && (
-            <Col className="m-1" md key={idx}>
-              <DisplayCardAnimated item={item} key={idx}></DisplayCardAnimated>
-            </Col>
-          )
-        );
+        const { featuredItem, isLoading, errMsg } = item;
+        if (isLoading) {
+          return <Loading key={idx} />;
+        } else if (errMsg) {
+          return <Error errMsg={errMsg} key={idx} />;
+        } else {
+          return (
+            featuredItem && (
+              <Col className="m-1" md key={idx}>
+                <DisplayCardAnimated
+                  item={item.featuredItem}
+                  key={idx}
+                ></DisplayCardAnimated>
+              </Col>
+            )
+          );
+        }
       })}
     </Row>
   );

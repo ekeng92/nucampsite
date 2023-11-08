@@ -14,5 +14,8 @@ export const store = configureStore({
     promotions: promotionsReducer,
     user: userReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([logger]),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat([
+      // logger
+    ]),
 });

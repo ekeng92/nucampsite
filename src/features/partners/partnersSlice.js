@@ -7,12 +7,13 @@ import { mapImageUrl } from "../../utils/mapImageUrl";
 export const fetchPartners = createAsyncThunk(
   "partners/fetchPartners",
   async () => {
-    console.log("Fetch Partners");
     const response = await fetch(baseUrl + "partners");
     if (response.ok) {
-      return mapImageUrl(await response.json());
+      return await response.json();
     } else {
-      return "Failed to fetch partners with response: " + response.status;
+      return Promise.reject(
+        "Failed to fetch partners with response:" + response.status
+      );
     }
   }
 );
@@ -33,7 +34,8 @@ const partnersSlice = createSlice({
     },
     [fetchPartners.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.partnersArray = action.payload;
+      state.errMsg = "";
+      state.partnersArray = mapImageUrl(action.payload);
     },
     [fetchPartners.rejected]: (state, action) => {
       state.isLoading = false;
@@ -51,5 +53,11 @@ export const selectAllPartners = (state) => {
 };
 
 export const selectFeaturedPartner = (state) => {
-  return state.partners.partnersArray.find((partner) => partner.featured);
+  return {
+    featuredItem: state.partners.partnersArray.find(
+      (partner) => partner.featured
+    ),
+    isLoading: state.partners.isLoading,
+    errMsg: state.partners.errMsg,
+  };
 };

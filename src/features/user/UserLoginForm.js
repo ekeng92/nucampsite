@@ -25,7 +25,6 @@ const UserLoginForm = () => {
       username: values.username,
       password: values.password,
     };
-    console.log("login values:", values);
     dispatch(setCurrentUser(loginUser));
     setLoginModalOpen(false);
   };

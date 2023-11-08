@@ -7,7 +7,6 @@ import { mapImageUrl } from "../../utils/mapImageUrl";
 export const fetchCampsites = createAsyncThunk(
   "campsites/fetchCampsites",
   async () => {
-    console.log("Fetch Campsite Thunk");
     const response = await fetch(baseUrl + "campsites");
     if (response.ok) {
       return await response.json();
@@ -20,7 +19,7 @@ export const fetchCampsites = createAsyncThunk(
 const initialState = {
   campsitesArray: [],
   isLoading: true,
-  error: "",
+  errMsg: "",
 };
 
 const campsitesSlice = createSlice({
@@ -33,12 +32,12 @@ const campsitesSlice = createSlice({
     },
     [fetchCampsites.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.error = "";
+      state.errMsg = "";
       state.campsitesArray = mapImageUrl(action.payload);
     },
     [fetchCampsites.rejected]: (state, action) => {
       state.isLoading = false;
-      state.error = action.error
+      state.errMsg = action.error
         ? action.error.message
         : "Error in fetch campsites";
     },
@@ -64,7 +63,11 @@ export const selectRandomCampsite = (state) => {
 };
 
 export const selectFeaturedCampsite = (state) => {
-  return state.campsites.campsitesArray.find(
-    (campsite) => campsite.featured === true
-  );
+  return {
+    featuredItem: state.campsites.campsitesArray.find(
+      (campsite) => campsite.featured === true
+    ),
+    isLoading: state.campsites.isLoading,
+    errMsg: state.campsites.errMsg,
+  };
 };
