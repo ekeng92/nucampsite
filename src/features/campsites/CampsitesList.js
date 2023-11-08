@@ -10,7 +10,7 @@ const CampsitesList = () => {
   const campsites = useSelector(selectAllCampsites);
 
   const isLoading = useSelector((state) => state.campsites.isLoading);
-  const error = useSelector((state) => state.campsites.error);
+  const errMsg = useSelector((state) => state.campsites.error);
 
   if (isLoading) {
     return (
@@ -18,10 +18,10 @@ const CampsitesList = () => {
         <Loading />
       </Row>
     );
-  } else if (error) {
+  } else if (errMsg) {
     return (
       <Row>
-        <Error error={error} />
+        <Error errMsg={errMsg} />
       </Row>
     );
   } else {

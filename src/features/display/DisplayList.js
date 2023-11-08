@@ -15,13 +15,13 @@ const DisplayList = () => {
   ];
 
   const isLoading = useSelector((state) => state.campsites.isLoading);
-  const error = useSelector((state) => state.campsites.error);
+  const errMsg = useSelector((state) => state.campsites.error);
 
   if (isLoading) {
     return <Loading />;
   }
-  if (error) {
-    return <Error error={error} />;
+  if (errMsg) {
+    return <Error errMsg={errMsg} />;
   }
 
   return (

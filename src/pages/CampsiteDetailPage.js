@@ -24,7 +24,7 @@ const CampsiteDetailPage = () => {
       </>
     );
   } else if (errMsg) {
-    content = <Error error={errMsg} />;
+    content = <Error errMsg={errMsg} />;
   }
 
   return (

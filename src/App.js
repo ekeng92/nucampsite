@@ -10,11 +10,13 @@ import AboutPage from "./pages/AboutPage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchCampsites } from "./features/campsites/campsitesSlice";
+import { fetchPartners } from "./features/partners/partnersSlice";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchPartners());
     dispatch(fetchCampsites());
   }, [dispatch]);
 
