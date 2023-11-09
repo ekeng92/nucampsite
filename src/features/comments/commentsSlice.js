@@ -6,7 +6,7 @@ import { mapImageUrl } from "../../utils/mapImageUrl";
 export const fetchComments = createAsyncThunk(
   "comments/fetchComments",
   async () => {
-    const response = await fetch(baseUrl + "comments");
+    const response = await fetch(baseUrl + "commens");
     if (response.ok) {
       return await response.json();
     }
