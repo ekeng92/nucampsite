@@ -3,26 +3,36 @@ import Comment from "./Comment";
 import { selectCommentsByCampsiteId } from "./commentsSlice";
 import CommentForm from "./CommentForm";
 import { useSelector } from "react-redux";
+import Loading from "../../components/Loading";
+import Error from "../../components/Error";
 
 const CommentsList = ({ campsiteId }) => {
   const comments = useSelector(selectCommentsByCampsiteId(campsiteId));
+  const isLoading = useSelector((state) => state.comments.isLoading);
+  const errMsg = useSelector((state) => state.comments.errMsg);
 
-  if (comments && comments.length > 0) {
-    return (
-      <Col md="5" className="m-1">
-        <h4>Comments</h4>
-        {comments.map((comment) => {
-          return <Comment key={comment.id} comment={comment} />;
-        })}
-        <CommentForm campsiteId={campsiteId} />
-      </Col>
-    );
+  if (isLoading) {
+    // return <Loading />;
+  } else if (errMsg) {
+    return <Error errMsg={errMsg} />;
   } else {
-    return (
-      <Col md="5" className="m-1">
-        There are no comments for this campsite yet.
-      </Col>
-    );
+    if (comments && comments.length > 0) {
+      return (
+        <Col md="5" className="m-1">
+          <h4>Comments</h4>
+          {comments.map((comment) => {
+            return <Comment key={comment.id} comment={comment} />;
+          })}
+          <CommentForm campsiteId={campsiteId} />
+        </Col>
+      );
+    } else {
+      return (
+        <Col md="5" className="m-1">
+          There are no comments for this campsite yet.
+        </Col>
+      );
+    }
   }
 };
 
