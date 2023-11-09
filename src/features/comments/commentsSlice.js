@@ -6,13 +6,32 @@ import { mapImageUrl } from "../../utils/mapImageUrl";
 export const fetchComments = createAsyncThunk(
   "comments/fetchComments",
   async () => {
-    const response = await fetch(baseUrl + "commens");
+    const response = await fetch(baseUrl + "comments");
     if (response.ok) {
       return await response.json();
     }
     return Promise.reject(
       `Failed to fetch comments with response: ${response.status}`
     );
+  }
+);
+
+export const postComment = createAsyncThunk(
+  "comments/postComment",
+  async (comment, { dispatch }) => {
+    const response = await fetch(baseUrl + "comments", {
+      method: "POST",
+      body: JSON.stringify(comment),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(addComment(data));
+    } else {
+      Promise.reject(
+        `Failed to post comment with response: ${response.status}`
+      );
+    }
   }
 );
 
@@ -48,6 +67,12 @@ const commentsSlice = createSlice({
       state.errMsg = action.error
         ? action.error.message
         : "Failed to fetch comments";
+    },
+    [postComment.rejected]: (state, action) => {
+      alert(
+        "Your comment could not be posted\nError: " +
+          (action.error ? action.error.message : "Failed to post comment")
+      );
     },
   },
 });
