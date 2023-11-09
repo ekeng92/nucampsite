@@ -3,12 +3,6 @@ import { baseUrl } from "../../app/shared/constants";
 import { mapImageUrl } from "../../utils/mapImageUrl";
 // import { PROMOTIONS } from "../../app/shared/oldData/PROMOTIONS";
 
-const initialState = {
-  promotionsArray: [],
-  isLoading: true,
-  errMsg: "",
-};
-
 export const fetchPromotions = createAsyncThunk(
   "promotions/fetchPromotions",
   async () => {
@@ -22,6 +16,12 @@ export const fetchPromotions = createAsyncThunk(
     }
   }
 );
+
+const initialState = {
+  promotionsArray: [],
+  isLoading: true,
+  errMsg: "",
+};
 
 const promotionsSlice = createSlice({
   name: "promotions",
@@ -49,10 +49,11 @@ export const promotionsReducer = promotionsSlice.reducer;
 
 export const selectFeaturedPromotion = (state) => {
   return {
-    isLoading: state.promotions.isLoading,
-    errMsg: state.promotions.errMsg,
     featuredItem: state.promotions.promotionsArray.find(
       (promo) => promo.featured
     ),
+    isLoading: state.promotions.isLoading,
+    errMsg: state.promotions.errMsg,
   };
 };
+ 

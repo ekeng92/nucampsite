@@ -65,7 +65,7 @@ export const selectRandomCampsite = (state) => {
 export const selectFeaturedCampsite = (state) => {
   return {
     featuredItem: state.campsites.campsitesArray.find(
-      (campsite) => campsite.featured === true
+      (campsite) => campsite.featured
     ),
     isLoading: state.campsites.isLoading,
     errMsg: state.campsites.errMsg,
